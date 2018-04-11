@@ -12,6 +12,9 @@
 
 #Telepresence
 - We are able to dev on 1 or more microservices locally by using telepresence
+- In order to run multiple microservices locally, you will need to make sure that you have 1 telepresence pod per local instance. 
+To achieve this you will need to run the command "telepresence". Once a telepresence pod has started you can run another nested telepresence
+command in the same shell. The process will now be connected to the running pod and will proxy to the local app instance that you start.
 
 ##NB!!!!!!!!!!
 - Telepresence does not automatically proxy pod IPs, therefore when you want a microservice to be able to reach the uaa
@@ -21,13 +24,21 @@ Likewise this problem would persist for all call that a microservice would try m
 - The IP for a pod can be found using kubectl describe service <service name> - and look at "endpoint" property
 
 ##Example - Running microservice locally (either microservice or api-gateway)
-Pod IP for UAA is: 172.17.0.5
+- Pod IP for UAA is: 172.17.0.5
+- Note: Kubernetes constructs its IP range for pods by distinguishing the last 8 bits
+- Specify CIDR as 24 (meaning that we create an aggregated network of IPS which will be differentiated on the final 8 bits)
+- Also note that by specifying the CIDR, all the db pods will also be proxied as long as the IPs run on 172.17.0.X. 
+Meaning that a local instance will now be able to connect to the db pod found in your cluster.
 
 Option 1: 
-1. run command: telepresence --also-proxy=172.17.0.5 --run java -jar "path to war file"
+1. Run telepresence
+2. check that the telepresence pod is running, you can run kubectl get pods to check.
+3. Once the pod is running, run command: telepresence --also-proxy=172.17.0.0/24 --run java -jar "path to war file" in the same shell.
 
 Option 2: 
-1. run command: telepresence --also-proxy=172.17.0.5
+1. Run telepresence
+2. check that the telepresence pod is running, you can run kubectl get pods to check.
+1. run command: telepresence --also-proxy=172.17.0.0/24
 2. Then run your application using your IDE or command line
 
 ## Create ingress to enable api-gateway frontend
