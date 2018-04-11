@@ -3,6 +3,8 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { Account, LoginModalService, Principal } from '../shared';
+import { TestService } from '../shared/test/test.service';
+
 
 @Component({
     selector: 'jhi-home',
@@ -19,7 +21,8 @@ export class HomeComponent implements OnInit {
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private testService: TestService
     ) {
     }
 
@@ -44,5 +47,13 @@ export class HomeComponent implements OnInit {
 
     login() {
         this.modalRef = this.loginModalService.open();
+    }
+
+    getTest() {
+        this.testService.test().subscribe((user) => {
+            console.log("in subscribe");
+            console.log(user);
+        });
+        console.log("in method");
     }
 }
