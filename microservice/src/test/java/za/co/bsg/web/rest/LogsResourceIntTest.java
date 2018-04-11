@@ -1,6 +1,7 @@
 package za.co.bsg.web.rest;
 
 import za.co.bsg.MicroserviceApp;
+import za.co.bsg.config.DiscoveryClientOverrideConfiguration;
 import za.co.bsg.config.SecurityBeanOverrideConfiguration;
 import za.co.bsg.web.rest.vm.LoggerVM;
 import ch.qos.logback.classic.AsyncAppender;
@@ -28,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see LogsResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {MicroserviceApp.class, SecurityBeanOverrideConfiguration.class})
+@SpringBootTest(classes = {MicroserviceApp.class, SecurityBeanOverrideConfiguration.class, DiscoveryClientOverrideConfiguration.class})
 public class LogsResourceIntTest {
 
     private MockMvc restLogsMockMvc;

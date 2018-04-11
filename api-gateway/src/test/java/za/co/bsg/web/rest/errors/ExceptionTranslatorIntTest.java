@@ -1,6 +1,7 @@
 package za.co.bsg.web.rest.errors;
 
 import za.co.bsg.ApiGatewayApp;
+import za.co.bsg.config.DiscoveryClientOverrideConfiguration;
 import za.co.bsg.config.SecurityBeanOverrideConfiguration;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ExceptionTranslator
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ApiGatewayApp.class, SecurityBeanOverrideConfiguration.class})
+@SpringBootTest(classes = {ApiGatewayApp.class, SecurityBeanOverrideConfiguration.class, DiscoveryClientOverrideConfiguration.class})
 public class ExceptionTranslatorIntTest {
 
     @Autowired
