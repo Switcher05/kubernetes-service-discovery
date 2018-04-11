@@ -11,21 +11,23 @@
 - You can add it to your path for eas if necessary. 
 
 #Telepresence
-- We are able to dev on 1 or microservices locally by using telepresence
+- We are able to dev on 1 or more microservices locally by using telepresence
 
 ##NB!!!!!!!!!!
 - Telepresence does not automatically proxy pod IPs, therefore when you want a microservice to be able to reach the uaa
-you will need to include --also-proxy=<IP for UAA pod>
+you will need to include --also-proxy=<IP for UAA pod>. This is because by default telepresence is not going to be able to 
+proxy the pod ip that the service discovery client (kubernetes) uses when the application is starting up and retrieving its public key.
+Likewise this problem would persist for all call that a microservice would try make that is to UAA.
 - The IP for a pod can be found using kubectl describe service <service name> - and look at "endpoint" property
 
 ##Example - Running microservice locally (either microservice or api-gateway)
-Pod IP and port for uaa is: 172.17.0.5:8081 
+Pod IP for UAA is: 172.17.0.5
 
 Option 1: 
-1. run command: telepresence --also-proxy=172.17.0.5:8081 --run java -jar "path to war file"
+1. run command: telepresence --also-proxy=172.17.0.5 --run java -jar "path to war file"
 
 Option 2: 
-1. run command: telepresence --also-proxy=172.17.0.5:8081
+1. run command: telepresence --also-proxy=172.17.0.5
 2. Then run your application using your IDE or command line
 
 ## Create ingress to enable api-gateway frontend
@@ -37,4 +39,5 @@ Run:
     1. minikube addons enable ingress
     2. echo "$(minikube ip) dev.frontend" | sudo tee -a /etc/hosts
     3. If api-gateway pod is running successfully you should now be able to hit it at http://dev.frontend
+    4. You can login using Username - "admin" Password - "admin"
  
