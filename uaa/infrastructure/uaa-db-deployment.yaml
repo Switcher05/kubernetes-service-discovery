@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: uaa-db
+spec:
+  replicas: 1
+  minReadySeconds: 30
+  strategy:
+      type: Recreate
+  template:
+    metadata:
+      labels:
+        app: uaa
+        component: database
+    spec:
+      containers:
+      - name: pg
+        image: postgres:9.6.3-alpine
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: POSTGRES_USER
+          value: uaa
+        - name: POSTGRES_PASSWORD
+          value:
+        ports:
+        - containerPort: 5432
+        resources:
+          requests:
+            cpu: 150m
+            memory: 0.15Gi
+          limits:
+            cpu: 165m
+            memory: 0.165Gi
+        volumeMounts:
+        - name: pg-data
+          mountPath: /var/lib/postgresql/data
+          subPath: postgres
+      volumes:
+        - name: pg-data
+          persistentVolumeClaim:
+            claimName: uaa-pg-pv-claim
+

@@ -1,0 +1,50 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: uaa
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: uaa
+        component: oauth2
+    spec:
+      containers:
+      - name: uaa
+        image: kubernetes.service.discovery/tutorial/uaa:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: RESTART_
+          value: "0"
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://uaa-db:5432/uaa
+        - name: JAVA_OPTS
+          value: " -Xmx256m -Xms256m"
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 300m
+          limits:
+            memory: 512Mi
+            cpu: 1
+        ports:
+        - name: web
+          containerPort: 8081
+        readinessProbe:
+          httpGet:
+            path: /management/health
+            port: web
+        livenessProbe:
+          httpGet:
+            path: /management/health
+            port: web
+          initialDelaySeconds: 180

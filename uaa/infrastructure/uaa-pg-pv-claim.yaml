@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: uaa-pg-pv-claim
+  labels:
+    app: uaa
+    component: database
+    db: postgres
+spec:
+  storageClassName: nfs
+  resources:
+    requests:
+      storage: 10Gi
+  accessModes:
+    - ReadWriteOnce

@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: microservice-pg-pv-claim
+  labels:
+    app: microservice
+    component: database
+    db: postgres
+spec:
+  storageClassName: default
+  resources:
+    requests:
+      storage: 10Gi
+  accessModes:
+    - ReadWriteOnce

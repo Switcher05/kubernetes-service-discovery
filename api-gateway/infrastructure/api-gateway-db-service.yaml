@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway-db
+  labels:
+    app: api-gateway
+    component: database
+spec:
+  selector:
+    app: api-gateway
+    component: database
+  ports:
+  - port: 5432

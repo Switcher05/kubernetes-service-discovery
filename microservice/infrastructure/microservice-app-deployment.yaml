@@ -1,0 +1,52 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: microservice
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: microservice
+        component: application-server
+    spec:
+      containers:
+      - name: microservice-app
+        image: kubernetes.service.discovery/tutorial/microservice:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: Africa/Johannesburg
+        - name: RESTART_
+          value: "0"
+        - name: SPRING_PROFILES_ACTIVE
+          value: dev
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://microservice-db:5432/microservice
+        - name: JAVA_OPTS
+          value: " -Xmx256m -Xms256m"
+        resources:
+          requests:
+            memory: 512Mi
+            cpu: 300m
+          limits:
+            memory: 1024Mi
+            cpu: 1500m
+        ports:
+        - name: web
+          containerPort: 8082
+        readinessProbe:
+          httpGet:
+            path: /management/health
+            port: web
+        livenessProbe:
+          httpGet:
+            path: /management/health
+            port: web
+          initialDelaySeconds: 180

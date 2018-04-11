@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice
+  labels:
+    app: microservice
+    component: application-server
+spec:
+  selector:
+    app: microservice
+    component: application-server
+  ports:
+  - name: web
+    port: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice-db
+  labels:
+      app: microservice
+      component: database
+spec:
+  selector:
+    app: microservice
+    component: database
+  ports:
+  - port: 5432

@@ -1,0 +1,12 @@
+[
+    {
+        "op": "test",
+        "path": "/spec/storageClassName",
+        "value": "nfs"
+    },
+    {
+        "op": "replace",
+        "path": "/spec/storageClassName",
+        "value": "standard"
+    }
+]
