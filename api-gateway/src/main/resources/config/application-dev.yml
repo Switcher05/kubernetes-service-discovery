@@ -33,7 +33,7 @@ spring:
 
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5430/ApiGateway
+        url: jdbc:postgresql://api-gateway-db:5432/ApiGateway
         username: ApiGateway
         password:
     jpa:
