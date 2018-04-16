@@ -7,8 +7,8 @@
 
 # How to apply patches (for kubernetes configs)
 - A script has been provided in docker folder called apply-all-yamls-with-patches.sh
-- The script will look in your working directly for all the .yaml files and will apply them to current cluster. See the usage for the required parameters.
-- You can add it to your path for eas if necessary. 
+- The script will look in your working directory for all the .yaml files and will apply them to current cluster. See the usage for the required parameters.
+- You can add it to your path for ease if necessary. 
 
 #Telepresence
 - We are able to dev on 1 or more microservices locally by using telepresence
