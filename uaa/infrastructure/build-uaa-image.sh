@@ -6,13 +6,9 @@
 TAG=$(git rev-parse --short HEAD)
 
 # ============================================================
-# Prerequisite TeamCity Build Step - 'tar cfz target.tgz -C target/ uaa-0.0.1-SNAPSHOT.war'
-# ============================================================
-
-# ============================================================
 # Build image
 # ============================================================
-tar c ../target.tgz Dockerfile | docker build -f Dockerfile --tag kubernetes.service.discovery/tutorial/uaa:${TAG} -
+tar c ../target/uaa*.war Dockerfile | docker build -f Dockerfile --tag kubernetes.service.discovery/tutorial/uaa:${TAG} -
 
 # ============================================================
 # Add tags
