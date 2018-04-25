@@ -5,9 +5,6 @@ cd ..
 cd uaa
 mvn clean install -DskipTests -Pprod
 
-# tar build artifact for docker build
-tar cfz target.tgz -C target/ uaa-0.0.1-SNAPSHOT.war
-
 #Small period of time to make sure tar is completed
 sleep 3
 
