@@ -12,7 +12,7 @@ TAG=$(git rev-parse --short HEAD)
 # ============================================================
 # Build image
 # ============================================================
-tar c ../target.tgz Dockerfile | docker build -f Dockerfile --tag kubernetes.service.discovery/tutorial/api-gateway:${TAG} -
+tar c ../target/api-gateway*.war Dockerfile | docker build -f Dockerfile --tag kubernetes.service.discovery/tutorial/api-gateway:${TAG} -
 
 # ============================================================
 # Add tags
