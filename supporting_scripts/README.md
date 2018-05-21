@@ -30,12 +30,18 @@ Likewise this problem would persist for all call that a microservice would try m
 - Also note that by specifying the CIDR, all the db pods will also be proxied as long as the IPs run on 172.17.0.X. 
 Meaning that a local instance will now be able to connect to the db pod found in your cluster.
 
-Option 1: 
+Option 1:
+1. Open a new terminal window and run: telepresence --swap-deployment <deployment_name> --also-proxy=172.17.0.0/24
+2. This will replace the current deployment with a telepresence shell
+3. Once the telepresence shell is up and running, run your application using your IDE or command line
+4. To run multiple local microservices just repeat the steps for each subsequent microservice
+
+Option 2: 
 1. Run telepresence
 2. check that the telepresence pod is running, you can run kubectl get pods to check.
 3. Once the pod is running, run command: telepresence --also-proxy=172.17.0.0/24 --run java -jar "path to war file" in the same shell.
 
-Option 2: 
+Option 3: 
 1. Run telepresence
 2. check that the telepresence pod is running, you can run kubectl get pods to check.
 1. run command: telepresence --also-proxy=172.17.0.0/24
