@@ -31,20 +31,22 @@ command in the same shell. The process will now be connected to the running pod 
 - Meaning that a local instance will now be able to connect to the db pod found in your cluster.
 
 ### Option 1:
-1. Open a new terminal window and run: `telepresence --swap-deployment <deployment_name> --also-proxy=172.17.0.0/24`
-2. This will replace the current deployment with a telepresence shell
+1. Open a new terminal window and run: `telepresence --also-proxy=172.17.0.0/24 --swap-deployment <deployment_name>`
+2. This will replace the given deployment with a telepresence shell
 3. Once the telepresence shell is up and running, run your application using your IDE or command line
 4. To run multiple local microservices just repeat the steps for each subsequent microservice
 
 ### Option 2: 
 1. Run `telepresence`
 2. check that the telepresence pod is running, you can run `kubectl get pods` to check.
-3. Once the pod is running, run command: `telepresence --also-proxy=172.17.0.0/24 --run java -jar "path to war file"`in the same shell.
+1. Once the pod is running, run command: `telepresence --also-proxy=172.17.0.0/24 --swap-deployment <deployment_name> --run java -jar "path to war file"`in the same shell.
+1. This will replace the given deployment with a telepresence shell
 
 ### Option 3: 
 1. Run `telepresence`
 2. check that the telepresence pod is running, you can run `kubectl get pods` to check.
-1. run command: `telepresence --also-proxy=172.17.0.0/24`
+1. run command: `telepresence --also-proxy=172.17.0.0/24 --swap-deployment <deployment_name>`
+1. This will replace the given deployment with a telepresence shell
 2. Then run your application using your IDE or command line
 
 ## Create ingress to enable api-gateway frontend
