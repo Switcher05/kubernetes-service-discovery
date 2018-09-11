@@ -5,7 +5,6 @@ import { JhiEventManager } from 'ng-jhipster';
 import { Account, LoginModalService, Principal } from '../shared';
 import { TestService } from '../shared/test/test.service';
 
-
 @Component({
     selector: 'jhi-home',
     templateUrl: './home.component.html',
@@ -51,9 +50,9 @@ export class HomeComponent implements OnInit {
 
     getTest() {
         this.testService.test().subscribe((user) => {
-            console.log("in subscribe");
+            console.log('in subscribe');
             console.log(user);
         });
-        console.log("in method");
+        console.log('in method');
     }
 }
