@@ -40,17 +40,13 @@ public class LoggingConfiguration {
 
     private final String serverPort;
 
-    private final String version;
-
     private final JHipsterProperties jHipsterProperties;
 
     public LoggingConfiguration(@Value("${spring.application.name}") String appName,
                                 @Value("${server.port}") String serverPort,
-                                @Value("${info.project.version}") String version,
                                 JHipsterProperties jHipsterProperties) {
         this.appName = appName;
         this.serverPort = serverPort;
-        this.version = version;
         this.jHipsterProperties = jHipsterProperties;
         if (jHipsterProperties.getLogging().getLogstash().isEnabled()) {
             addLogstashAppender(context);
@@ -75,8 +71,7 @@ public class LoggingConfiguration {
         logstashAppender.setContext(context);
         String optionalFields = "";
 
-        String customFields = "{\"app_name\":\"" + appName + "\",\"app_port\":\"" + serverPort + "\"," +
-            optionalFields + "\"version\":\"" + version + "\"}";
+        String customFields = "{\"app_name\":\"" + appName + "\",\"app_port\":\"" + serverPort + "\"}";
 
         // More documentation is available at: https://github.com/logstash/logstash-logback-encoder
         LogstashEncoder logstashEncoder = new LogstashEncoder();

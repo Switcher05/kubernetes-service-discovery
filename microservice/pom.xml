@@ -90,7 +90,7 @@
         <sonar.tests>${project.basedir}/src/test/</sonar.tests>
 
         <!-- jhipster-needle-maven-property -->
-        <spring.cloud.kubernetes>0.2.0.RELEASE</spring.cloud.kubernetes>
+        <spring.cloud.kubernetes>0.3.0.RELEASE</spring.cloud.kubernetes>
     </properties>
 
     <dependencyManagement>
