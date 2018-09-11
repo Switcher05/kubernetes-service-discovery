@@ -41,12 +41,13 @@ spec:
         ports:
         - name: web
           containerPort: 8082
-          #        readinessProbe:
-          #          httpGet:
-          #            path: /management/health
-          #            port: web
-          #        livenessProbe:
-          #          httpGet:
-          #            path: /management/health
-          #            port: web
-          #          initialDelaySeconds: 180
+        readinessProbe:
+          httpGet:
+            path: /management/health
+            port: web
+          initialDelaySeconds: 180
+        livenessProbe:
+          httpGet:
+            path: /management/health
+            port: web
+          initialDelaySeconds: 180
