@@ -1,0 +1,21 @@
+[
+    {
+        "op": "test",
+        "path": "/spec/template/spec/containers/0/env/1/name",
+        "value": "SPRING_PROFILES_ACTIVE"
+    },
+    {
+        "op": "replace",
+        "path": "/spec/template/spec/containers/0/env/1/value",
+        "value": "dev"
+    },
+    {
+        "op": "test",
+        "path": "/spec/template/spec/containers/0/resources/requests/cpu",
+        "value": "300m"
+    },
+    {
+        "op": "remove",
+        "path": "/spec/template/spec/containers/0/resources"
+    }
+]

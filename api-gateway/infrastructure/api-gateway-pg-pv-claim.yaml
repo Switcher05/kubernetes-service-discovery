@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: api-gateway-pg-pv-claim
+  labels:
+    app: api-gateway
+    component: database
+    db: postgres
+spec:
+  storageClassName: standard
+  resources:
+    requests:
+      storage: 10Gi
+  accessModes:
+    - ReadWriteOnce

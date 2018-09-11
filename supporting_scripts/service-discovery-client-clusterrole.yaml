@@ -1,0 +1,17 @@
+# This ClusterRole is needed for Kubernetes Service Discovery to work on newer Kubernetes clusters.
+# Bind this to the appropriate service account in the namespace where you wish to grant these permissions with a RoleBinding:
+#
+# kubectl create rolebinding default:service-discovery-client --clusterrole service-discovery-client --serviceaccount <namespace>:<service account name>
+#
+# Usage for Demo: kubectl create rolebinding default:service-discovery-client --clusterrole service-discovery-client --serviceaccount kubernetes-service-discovery:default
+
+
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: service-discovery-client
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["services", "pods", "configmaps", "endpoints"]
+  verbs: ["get", "watch", "list"]
+
