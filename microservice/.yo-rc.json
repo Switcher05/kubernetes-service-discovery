@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "za.co.bsg"
     },
-    "jhipsterVersion": "4.14.0",
+    "jhipsterVersion": "5.3.1",
     "baseName": "microservice",
     "packageName": "za.co.bsg",
     "packageFolder": "za/co/bsg",
