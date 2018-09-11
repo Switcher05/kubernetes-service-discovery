@@ -1,23 +1,6 @@
 [
   {
     "op": "add",
-    "path": "/metadata/annotations/kubernetes.io~1tls-acme",
-    "value": "true"
-  },
-  {
-    "op": "add",
-    "path": "/spec/tls",
-    "value": [
-      {
-        "hosts": [
-          "dev.frontend"
-        ],
-        "secretName": "marketplace-config-tls"
-      }
-    ]
-  },
-  {
-    "op": "add",
     "path": "/spec/rules/0/host",
     "value": "dev.frontend"
   }
