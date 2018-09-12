@@ -1,9 +1,14 @@
 # Contents of this folder
 - This folder contains useful scripts to interact with the demo.
-1. postgres configs for each application.
+1. A minikube startup script (minikube-start.sh). It used the hyperkit vm driver. Modify
+the script if you are using a different driver.
+It will also create the namespace used for the demo.
 2. A build script for each application that will automate the build for mvn, docker, minikube
-3. A script to start docker postgres containers
-4. A script to start minikube and adjust the working namespace
+
+# Add Cluster Role to allow for service discovery between applications
+Depending on your cluster version you may have rbac enabled. If this is the case then:
+1. kubectl apply -f service-discovery-client-clusterrole.yaml
+2. run 'kubectl create rolebinding default:service-discovery-client --clusterrole service-discovery-client --serviceaccount kubernetes-service-discovery:default'
 
 # How to apply patches (for kubernetes configs)
 - A script has been provided in docker folder called apply-all-yamls-with-patches.sh

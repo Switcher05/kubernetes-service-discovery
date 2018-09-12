@@ -6,10 +6,10 @@
 - There are different README files in the project, the most important of which is located in [supporting_files](supporting_scripts/README.md).
 
 # Technology Prerequisites
-- Docker (tutorial uses Docker version 17.12.1-ce, build 7390fc6)
+- Docker (tutorial uses Client version 18.06.1-ce, Server version: 18.06.1-ce)
 - Docker Compose (tutorial uses docker-compose version 1.16.1, build 6d1ac21)
-- Minikube (tutorial uses minikube version: v0.22.3)
-- Telepresence (tutorial uses telepresence version 0.81) 
+- Minikube (tutorial uses minikube version: v0.27.0)
+- Telepresence (tutorial uses telepresence version 0.90) 
 
 # Guides
 - you can follow a quick start tutorial of telepresence at [telepresence_quick_tutorial](https://www.telepresence.io/)
