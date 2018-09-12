@@ -15,9 +15,9 @@
 
 logging:
     level:
-        ROOT: INFO
-        za.co.bsg: INFO
-        io.github.jhipster: INFO
+        ROOT: DEBUG
+        za.co.bsg: DEBUG
+        io.github.jhipster: DEBUG
 
 spring:
     devtools:
