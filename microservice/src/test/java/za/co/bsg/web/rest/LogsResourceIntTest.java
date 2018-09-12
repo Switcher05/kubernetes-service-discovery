@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see LogsResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {MicroserviceApp.class, SecurityBeanOverrideConfiguration.class, DiscoveryClientOverrideConfiguration.class})
+@SpringBootTest(classes = {SecurityBeanOverrideConfiguration.class, DiscoveryClientOverrideConfiguration.class, MicroserviceApp.class})
 public class LogsResourceIntTest {
 
     private MockMvc restLogsMockMvc;
