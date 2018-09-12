@@ -2,7 +2,7 @@
 
 # Run mvn build - prod profile used to have access to bundled UI
 cd ../api-gateway
-mvn clean install -DskipTests -Pprod
+./mvnw -Pprod -DskipTests clean package
 
 # Set docker env to minikube docker engine
 eval $(minikube docker-env)

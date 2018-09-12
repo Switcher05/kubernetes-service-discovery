@@ -2,7 +2,7 @@
 
 # Run mvn build
 cd ../uaa
-mvn clean install -DskipTests -Pprod
+./mvnw -Pprod -DskipTests clean package
 
 # Set docker env to minikube docker engine
 eval $(minikube docker-env)
