@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json --environment=dev",
-    "build": "ng build",
+    "start": "ng serve --proxy-config proxy.conf.json",
+    "build": "ng build --aot --prod",
+    "build-dev": "ng build --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "telepresence": "telepresence --swap-deployment helix-ui --run ng serve --environment=dev --port 8080 --disable-host-check"
+    "telepresence": "telepresence --swap-deployment helix-ui --run ng serve --port 8080 --disable-host-check"
   },
   "private": true,
   "dependencies": {
