@@ -12,4 +12,5 @@ infrastructure/build-ui-image.sh
 # Apply any existing patches to kubernetes configs
 # You will need apply-all-yamls-with-patches in your path or in the correct directory for this to work.
 # Use the appropriate namespace here - mine is called marketplace-dev and my patch file context is minikube
+cd infrastructure
 apply-all-yamls-with-patches.sh kubernetes-service-discovery minikube
