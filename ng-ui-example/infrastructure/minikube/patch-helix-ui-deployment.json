@@ -1,0 +1,16 @@
+[
+  {
+    "op": "replace",
+    "path": "/spec/replicas",
+    "value": 1
+  },
+  {
+    "op": "test",
+    "path": "/spec/template/spec/containers/0/resources/requests/cpu",
+    "value": "150m"
+  },
+  {
+    "op": "remove",
+    "path": "/spec/template/spec/containers/0/resources"
+  }
+]

@@ -1,0 +1,73 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: example-ui
+spec:
+  replicas: 2
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: example-ui
+        component: user-interface
+    spec:
+      containers:
+        - name: example-ui
+          image: foundery.azurecr.io/foundery/example-ui:latest
+          imagePullPolicy: IfNotPresent
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/usr/sbin/nginx","-s","quit"]
+          volumeMounts:
+            - name: ui-nginx-conf
+              mountPath: /etc/nginx/
+            - name: ui-nginx-log-rotate-conf
+              mountPath: /etc/logrotate.d/
+
+          env:
+            # This is a workaround to easily force a restart by incrementing the value (numbers must be quoted)
+            # NGINX needs to be restarted for configuration changes, especially DNS changes, to be detected
+            - name: RESTART_
+              value: "1"
+            - name: TZ
+              value: Africa/Johannesburg
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 150m
+              memory: 25Mi
+            limits:
+              cpu: 165m
+              memory: 50Mi
+          readinessProbe:
+            httpGet:
+              path: /index.html
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /index.html
+              port: 8080
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+      volumes:
+        - name: ui-nginx-conf
+          configMap:
+            name: ui-nginx-conf
+            items:
+              - key: nginx.conf
+                path: nginx.conf
+        - name: ui-nginx-log-rotate-conf
+          configMap:
+            name: ui-nginx-log-rotate-conf
+            items:
+              - key: nginx
+                path: nginx

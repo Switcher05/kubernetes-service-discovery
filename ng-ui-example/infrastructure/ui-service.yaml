@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: example-ui
+    component: user-interface
+  name: example-ui
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: example-ui
+    component: user-interface
+  sessionAffinity: None
+  type: ClusterIP
+
