@@ -10,7 +10,24 @@ spec:
   rules:
     - http:
         paths:
+        - path: /api/
+          backend:
+              serviceName: api-gateway
+              servicePort: web
+        - path: /uaa/
+          backend:
+              serviceName: api-gateway
+              servicePort: web
+        - path: /auth/
+          backend:
+              serviceName: api-gateway
+              servicePort: web
+        - path: /microservice/
+          backend:
+              serviceName: api-gateway
+              servicePort: web
         - path: /
           backend:
-            serviceName: api-gateway
-            servicePort: web
+              serviceName: example-ui
+              servicePort: 80
+
