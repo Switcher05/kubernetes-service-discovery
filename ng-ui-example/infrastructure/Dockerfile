@@ -24,9 +24,9 @@ COPY . /build/
 RUN npm run build 2> /dev/null
 
 # Step: Build webserver application container with static content for distribution
-FROM nginx:1.13.3-alpine as server
+FROM nginx:1.15.3-alpine as server
 EXPOSE 8080
 LABEL description="Serves Example UI"
 
 RUN mkdir -p /example/www/ && chmod -R ugo=rx /example/www/
-COPY --from=build /build/dist /example/www/
+COPY --from=build /build/dist/ng-ui-example /example/www/
