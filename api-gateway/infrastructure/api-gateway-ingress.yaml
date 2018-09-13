@@ -8,26 +8,27 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-    - http:
+    - host: dev.frontend
+      http:
         paths:
         - path: /api/
-          backend:
+          backend: &backend
               serviceName: api-gateway
               servicePort: web
         - path: /uaa/
-          backend:
-              serviceName: api-gateway
-              servicePort: web
+          backend: *backend
         - path: /auth/
-          backend:
-              serviceName: api-gateway
-              servicePort: web
+          backend: *backend
         - path: /microservice/
-          backend:
-              serviceName: api-gateway
-              servicePort: web
+          backend: *backend
         - path: /
           backend:
               serviceName: example-ui
               servicePort: 80
+    - host: gateway.frontend
+      http:
+        paths:
+        - path: /
+          backend: *backend
+
 
