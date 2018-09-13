@@ -10,7 +10,7 @@
     "test-single": "ng test --watch=false --browsers=ChromiumNoSandbox",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "telepresence": "telepresence --swap-deployment helix-ui --run ng serve --port 8080 --disable-host-check"
+    "telepresence": "telepresence --swap-deployment example-ui --run ng serve --port 8080 --disable-host-check"
   },
   "private": true,
   "dependencies": {
