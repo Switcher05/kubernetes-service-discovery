@@ -2,6 +2,9 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 module.exports = function (config) {
+  if (process.env['TEAMCITY_VERSION']) {
+    reporters.push('teamcity');
+  }
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -26,6 +29,13 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false
+    customLaunchers: {
+      ChromiumNoSandbox: {
+        base: 'ChromiumHeadless',
+        flags: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-translate', '--disable-extensions']
+      }
+    },
+    singleRun: false,
+    browserNoActivityTimeout: 50000
   });
 };
