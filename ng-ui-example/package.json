@@ -7,7 +7,7 @@
     "build": "ng build --aot --prod",
     "build-dev": "ng build --aot",
     "test": "ng test",
-    "test-single": "ng test --single-run --browser=ChromiumNoSandbox",
+    "test-single": "ng test --watch=false --browsers=ChromiumNoSandbox",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "telepresence": "telepresence --swap-deployment helix-ui --run ng serve --port 8080 --disable-host-check"
