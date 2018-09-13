@@ -7,7 +7,7 @@ COPY package-lock.json .
 RUN npm install 2> /dev/null
 
 # Step: Run tests
-FROM markadams/chromium-xvfb-js:6 as tests
+FROM markadams/chromium-xvfb-js:8 as tests
 WORKDIR /build
 COPY --from=modules /build/node_modules node_modules/
 # This step is necessary because of the different architecture between this container, and the previous one which installed the node_modules
