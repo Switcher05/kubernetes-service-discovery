@@ -55,13 +55,11 @@ command in the same shell. The process will now be connected to the running pod 
 2. Then run your application using your IDE or command line
 
 ## Create ingress to enable api-gateway frontend
-- Run: `kubectl create namespace nginx-ingress`
-- Change directory to [nginx](/nginx/)
-- Run: `apply-all-yamls-with-patches nginx-ingress xxx`
-- To hit these services from outside of minikube (i.e. from your machine to minikube) you will need to do the following:
-Run:
-    1. `minikube addons enable ingress`
-    2. `echo "$(minikube ip) dev.frontend" | sudo tee -a /etc/hosts`
-    3. If api-gateway pod is running successfully you should now be able to hit it at[api-gateway-front-end](http://dev.frontend)
-    4. You can login using Username - "admin" Password - "admin"
+
+1. `minikube addons enable ingress`
+2. `echo "$(minikube ip) dev.frontend" | sudo tee -a /etc/hosts`
+2. `echo "$(minikube ip) gateway.frontend" | sudo tee -a /etc/hosts`
+3. If example-ui pod is running successfully you should now be able to hit it at [example-front-end](http://dev.frontend)
+3. If api-gateway pod is running successfully you should now be able to hit it at [api-gateway-front-end](http://gateway.frontend)
+4. You can login using Username - "admin" Password - "admin"
  

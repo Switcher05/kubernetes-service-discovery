@@ -3,7 +3,7 @@
 #
 # kubectl create rolebinding default:service-discovery-client --clusterrole service-discovery-client --serviceaccount <namespace>:<service account name>
 #
-# Usage for Demo: kubectl create rolebinding default:service-discovery-client --clusterrole service-discovery-client --serviceaccount kubernetes-service-discovery:default
+# Usage for Demo: kubectl create -n kubernetes-service-discovery rolebinding default:service-discovery-client --clusterrole service-discovery-client --serviceaccount kubernetes-service-discovery:default
 
 
 kind: ClusterRole

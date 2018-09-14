@@ -11,6 +11,7 @@ else
 		minikube start --vm-driver hyperkit
 	else
 	    # checking if minikube net is active
+	    # this will start minikube with kvm as the vm-driver
 	    virsh net-list --inactive | grep minikube-net > /dev/null
         if [ $? -eq 0 ]; then
         echo "Starting minikube-net"

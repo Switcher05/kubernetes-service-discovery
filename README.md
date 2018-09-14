@@ -10,6 +10,7 @@
 - Docker Compose (tutorial uses docker-compose version 1.16.1, build 6d1ac21)
 - Minikube (tutorial uses minikube version: v0.27.0)
 - Telepresence (tutorial uses telepresence version 0.90) 
+- Ubuntu 16.04 LTS
 
 # Guides
 - you can follow a quick start tutorial of telepresence at [telepresence_quick_tutorial](https://www.telepresence.io/)
